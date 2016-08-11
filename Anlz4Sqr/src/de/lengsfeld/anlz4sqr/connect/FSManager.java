@@ -21,8 +21,9 @@ public final class FSManager {
 		System.setProperty("java.net.useSystemProxies", "true");
 
 		Result<VenuesSearchResult> result = foursquareApi
-				.venuesSearch(ll, null, null, null, query, 50, null,
-						categoryId, null, null, null);
+				.venuesSearch(ll, null, null, null, query, 50, null, categoryId, null, null, null, null, null);
+
+		//Result<VenuesSearchResult> result = foursquareApi.venuesSearch(ll, null, null, null, query, 50, null, categoryId, null, null, null);
 
 		System.out.println("Now using coordinates: " + ll);
 		if (result.getMeta().getCode() == 200) {
