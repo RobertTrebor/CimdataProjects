@@ -9,10 +9,11 @@ import org.primefaces.event.NodeSelectEvent;
 import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.TreeNode;
 
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+
 import javax.faces.context.FacesContext;
+import javax.inject.Named;
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
@@ -44,7 +45,7 @@ class MyObject implements Serializable {
 
 }
 
-@ManagedBean
+@Named
 @SessionScoped
 public class CategoriesController implements Serializable{
 	/**

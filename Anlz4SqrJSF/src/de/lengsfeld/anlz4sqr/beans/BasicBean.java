@@ -5,32 +5,24 @@ import fi.foyt.foursquare.api.Result;
 import fi.foyt.foursquare.api.entities.CompactVenue;
 import fi.foyt.foursquare.api.entities.VenuesSearchResult;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
-@ManagedBean
-@RequestScoped
+@Named
+@SessionScoped
 public class BasicBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@ManagedProperty(value = "#{mapBean}")
+	@Inject
 	private MapBean mapBean;
 
-	public void setMapBean(MapBean mapBean) {
-		this.mapBean = mapBean;
-	}
-
-	@ManagedProperty(value = "#{categoriesController}")
+	@Inject
 	private CategoriesController categoriesController;
-	
-	public void setCategoriesController(CategoriesController categoriesController) {
-		this.categoriesController = categoriesController;
-	}
 
 	private FSManager fsManager = new FSManager();
 

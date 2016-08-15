@@ -7,14 +7,14 @@ import org.primefaces.model.map.LatLng;
 import org.primefaces.model.map.LatLngBounds;
 import org.primefaces.model.map.MapModel;
 
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.inject.Named;
 import java.io.Serializable;
 
-@ManagedBean
-@RequestScoped
+@Named
+@SessionScoped
 public class MapBean implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
