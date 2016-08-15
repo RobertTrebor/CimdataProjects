@@ -22,17 +22,18 @@ public final class FSManager {
 
 		Result<VenuesSearchResult> result = foursquareApi
 				.venuesSearch(ll, null, null, null, query, 50, null,
-						categoryId, null, null, null);
+						categoryId, null, null, null, null, null);
 
-		System.out.println("Now using coordinates: " + ll);
+		System.out.println("FSManager.java - Now using coordinates: " + ll);
 		if (result.getMeta().getCode() == 200) {
 			// if query was ok we can finally do something with the data
-			System.out.println("OK! ");
-			System.out.println("Number of items: "
-					+ result.getResult().getVenues().length);
+			System.out.println("\tOK! ");
+			System.out.print("FSManager.java - Number of items: "
+					+ result.getResult().getVenues().length + "\t");
 			for (CompactVenue venue : result.getResult().getVenues()) {
 				System.out.print(venue.getName() + "\t");
 			}
+			System.out.println("\nAgain OK! ");
 			return result;
 
 		} else {

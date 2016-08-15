@@ -1,25 +1,23 @@
 package de.lengsfeld.anlz4sqr.beans;
 
-import java.io.Serializable;
-import java.util.Arrays;
-import java.util.List;
-
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
-
 import de.lengsfeld.anlz4sqr.connect.FSManager;
 import fi.foyt.foursquare.api.Result;
 import fi.foyt.foursquare.api.entities.CompactVenue;
 import fi.foyt.foursquare.api.entities.VenuesSearchResult;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
+import java.io.Serializable;
+import java.util.Arrays;
+import java.util.List;
+
 @ManagedBean
-@SessionScoped
+@RequestScoped
 public class BasicBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
-	// Zugriff auf ein anderes Bean
+
 	@ManagedProperty(value = "#{mapBean}")
 	private MapBean mapBean;
 
@@ -34,13 +32,15 @@ public class BasicBean implements Serializable {
 		this.categoriesController = categoriesController;
 	}
 
-	private Result<VenuesSearchResult> result = null;
-	private List<CompactVenue> venues = null;
-	private CompactVenue selectedVenue = null;
+	private FSManager fsManager = new FSManager();
+
+	private Result<VenuesSearchResult> result;
+	private List<CompactVenue> venues;
+	private CompactVenue selectedVenue;
 
 	private String coordinates;
-	private String query = null;
-	private String category = null;
+	private String query;
+	private String category;
 
 	public BasicBean() {
 		System.setProperty("java.net.useSystemProxies", "true");
@@ -51,11 +51,11 @@ public class BasicBean implements Serializable {
 		if (category == "0000"){
 			category = "";
 		}
-		System.out.println(category);
+		System.out.print("BasicBean.java - category: " + category);
 		coordinates = mapBean.getCoordinates();
-		System.out.println(coordinates);
+		System.out.println("\t coordinates");
 		try {
-			result = new FSManager().draw3(coordinates, query,
+			result = fsManager.draw3(coordinates, query,
 					category);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -82,11 +82,6 @@ public class BasicBean implements Serializable {
 		this.result = result;
 	}
 
-	public void loadVenues() {
-		venues = Arrays.asList(result.getResult().getVenues());
-		setVenues(venues);
-	}
-
 	public List<CompactVenue> getVenues() {
 		return venues;
 	}
@@ -97,12 +92,12 @@ public class BasicBean implements Serializable {
 
 	public CompactVenue getSelectedVenue() {
 		if(selectedVenue != null) {
-		System.out.println(selectedVenue.getName());
-		System.out.println(selectedVenue.getLocation().getCity());
-		System.out.println(selectedVenue.getLocation().getCountry());
-		System.out.println(selectedVenue.getLocation().getCrossStreet());
-		selectedVenue.getHereNow().getCount();
-		System.out.println();
+			System.out.println(selectedVenue.getName());
+			System.out.println(selectedVenue.getLocation().getCity());
+			System.out.println(selectedVenue.getLocation().getCountry());
+			System.out.println(selectedVenue.getLocation().getCrossStreet());
+			selectedVenue.getHereNow().getCount();
+			System.out.println();
 		}
 		return selectedVenue;
 	}

@@ -1,15 +1,13 @@
 package de.lengsfeld.anlz4sqr.beans;
 
+import fi.foyt.foursquare.api.entities.CompactVenue;
+import org.primefaces.model.SelectableDataModel;
+
+import javax.faces.model.ListDataModel;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.faces.model.ListDataModel;
-
-import fi.foyt.foursquare.api.entities.CompactVenue;
-
-import org.primefaces.model.SelectableDataModel;
-
-public class VenueModel extends ListDataModel<CompactVenue> implements
+public class VenueModel extends ListDataModel implements
 		SelectableDataModel<CompactVenue>, Serializable {
 
 	/**

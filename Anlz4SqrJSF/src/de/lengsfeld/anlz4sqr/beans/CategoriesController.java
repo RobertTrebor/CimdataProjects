@@ -1,15 +1,5 @@
 package de.lengsfeld.anlz4sqr.beans;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.Serializable;
-import java.util.List;
-
-import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
-
 import org.jdom2.Attribute;
 import org.jdom2.Document;
 import org.jdom2.Element;
@@ -18,6 +8,15 @@ import org.jdom2.input.SAXBuilder;
 import org.primefaces.event.NodeSelectEvent;
 import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.TreeNode;
+
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import java.io.File;
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.List;
 
 
 class MyObject implements Serializable {
@@ -107,22 +106,19 @@ public class CategoriesController implements Serializable{
     }
 
 	public TreeNode getSelectedNode() {
-		//System.out.println("*****GET********" + ((MyObject) selectedNode.getData()).getId());
-		System.out.println("public TreeNode getSelectedNode()");
+		System.out.println("CategoriesController.java - public TreeNode getSelectedNode()");
 		return selectedNode;
 	}
 
 	public void setSelectedNode(TreeNode selectedNode) {
-		System.out.println("public void setSelectedNode(TreeNode selectedNode) {");
+		System.out.print("CategoriesController.java - public void setSelectedNode(TreeNode selectedNode) {");
 		this.selectedNode = selectedNode;
-		System.out.println("******SET*******" + ((MyObject) selectedNode.getData()).getId());
 	}
 
 	public String getCategoryId() {
-		System.out.println("1." + selectedNode.getData());
-		//System.out.println("*************" + ((MyObject) selectedNode.getData()).getId());
 		categoryId = ((MyObject) selectedNode.getData()).getId();
-		return ((MyObject) selectedNode.getData()).getId();
+		System.out.println("CategoriesController.java - getCategoryId: selectedNode " + categoryId);
+		return categoryId;
 	}
 	
 	public String getCategoryName() {
@@ -130,10 +126,14 @@ public class CategoriesController implements Serializable{
 		return categoryName;
 	}
 	
-	public void onNodeSelect(NodeSelectEvent event) {  
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Selected", event.getTreeNode().toString());  
-  
-        FacesContext.getCurrentInstance().addMessage(null, message);  
-    }  
-  
+	public void onNodeSelect(NodeSelectEvent event) {
+
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Selected", event.getTreeNode().toString());
+		addMessage(message);
+        //FacesContext.getCurrentInstance().addMessage(null, message);
+    }
+
+	public void addMessage(FacesMessage message) {
+		FacesContext.getCurrentInstance().addMessage(null, message);
+	}
 }

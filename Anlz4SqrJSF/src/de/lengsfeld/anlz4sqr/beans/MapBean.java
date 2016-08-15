@@ -1,12 +1,5 @@
 package de.lengsfeld.anlz4sqr.beans;
 
-import java.io.Serializable;
-
-import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
-
 import org.primefaces.event.map.PointSelectEvent;
 import org.primefaces.event.map.StateChangeEvent;
 import org.primefaces.model.map.DefaultMapModel;
@@ -14,8 +7,14 @@ import org.primefaces.model.map.LatLng;
 import org.primefaces.model.map.LatLngBounds;
 import org.primefaces.model.map.MapModel;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
+import java.io.Serializable;
+
 @ManagedBean
-@SessionScoped
+@RequestScoped
 public class MapBean implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -23,7 +22,6 @@ public class MapBean implements Serializable {
 	private MapModel model;
 	private String latitude = "52.531227";
 	private String longitude = "13.403921";
-	private String coordinates;
 	
 	public MapBean() {
 		model = new DefaultMapModel();
@@ -51,6 +49,7 @@ public class MapBean implements Serializable {
 		LatLng latlng = event.getLatLng();
 		latitude = String.valueOf(latlng.getLat());
 		longitude = String.valueOf(latlng.getLng());
+
 		addMessage(new FacesMessage(FacesMessage.SEVERITY_INFO,
 				"Point Selected", "Lat:" + latlng.getLat() + ", Lng:"
 						+ latlng.getLng()));

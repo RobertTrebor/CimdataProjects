@@ -1,20 +1,16 @@
 package de.lengsfeld.anlz4sqr.model;
 
-import javax.swing.table.AbstractTableModel;
-
 import fi.foyt.foursquare.api.Result;
 import fi.foyt.foursquare.api.entities.CompactVenue;
 import fi.foyt.foursquare.api.entities.VenuesSearchResult;
+
+import javax.swing.table.AbstractTableModel;
 
 public class MyAbstractTableModel extends AbstractTableModel {
 
 	private static final long serialVersionUID = 1L;
 	private Result<VenuesSearchResult> result;
 	private String[] titles;
-
-	// String[] telefonNummern = { "Max", "Anton", "Marta", "Ina" };
-	//String[] ueberschrift = { "Venue", "Checked in", "URL", "Checkins",
-	//		"Users", "Address" };
 
 	public MyAbstractTableModel(String[] titles,
 			Result<VenuesSearchResult> result) {
@@ -74,8 +70,5 @@ public class MyAbstractTableModel extends AbstractTableModel {
 
 	@Override
 	public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-		// System.out.println(telefonNummern[rowIndex]);
-		// telefonNummern[rowIndex] = String.valueOf(aValue);
-		// System.out.println(Arrays.toString(telefonNummern[0]));
 	}
 }

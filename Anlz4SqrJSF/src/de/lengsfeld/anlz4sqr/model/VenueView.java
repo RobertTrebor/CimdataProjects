@@ -5,9 +5,6 @@ import javax.swing.table.TableModel;
 
 public class VenueView extends JTable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	public VenueView(TableModel m) {
